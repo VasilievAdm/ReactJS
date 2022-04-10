@@ -1,0 +1,24 @@
+.container{
+  margin: 10px;
+  background-color: aliceblue;
+}
+.header {
+  background-color: #ccc;
+  text-align: center;
+}
+.input {
+background-color: antiquewhite;
+}
+.button{
+  background-color: bisque;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.message{
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+  width: 300px;
+  min-height: 250px;
+}
