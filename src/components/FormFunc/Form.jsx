@@ -4,7 +4,6 @@ import { Button } from './Button';
 import { Message } from './Message';
 
 export const Form = () => {
-  const [name] = useState('Send')
   const [value, setValue] = useState('')
   const [messages, setMessages] = useState([])
 
@@ -19,7 +18,7 @@ export const Form = () => {
 
   return <>
     <Input change={handleChange} value={value} />
-    <Button name={name} click={handleClick} />
+    <Button name={'Send'} click={handleClick} />
     <Message send={messages} />
   </>
 

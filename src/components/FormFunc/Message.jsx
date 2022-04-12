@@ -1,5 +1,5 @@
 export const Message = (props) => {
     return <div className="message">
-        {props.send.map(message => <p key={message.toString()}>{message}</p >)}
+        {props.send.map((message, idx) => <p key={idx}>{message}</p >)}
     </div>
 };
