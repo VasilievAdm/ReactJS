@@ -7,10 +7,7 @@ import { MessageList } from './MessageList';
 export const Form = () => {
   const [value, setValue] = useState('')
   const [author, setAuthor] = useState('')
-  // const [message, setMessage] = useState('')
   const [messageList, setMessageList] = useState([])
-
-
 
   const handleClick = () => {
     setMessageList([...messageList, { value, author }])
@@ -54,11 +51,11 @@ export const Form = () => {
   }, [messageList])
 
   return <>
-
-    <Input change={handleChangeM} value={value} />
-    <Author change={handleChangeA} value={value} />
-    <Button name={'Send'} click={handleClick} />
     <MessageList messages={messageList} />
+    <Author change={handleChangeA} value={value} />
+    <Input change={handleChangeM} value={value} />
+    <Button name={'Send'} click={handleClick} />
+
   </>
 
 }
