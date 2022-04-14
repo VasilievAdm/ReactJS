@@ -9,11 +9,11 @@ export const Form = () => {
   const [author, setAuthor] = useState('')
   const [messageList, setMessageList] = useState([])
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setMessageList([...messageList, { value, author }])
     setValue('')
     setAuthor(author)
-  }
+  }, [value, author])
 
   const handleChangeM = useCallback((ev) => {
     setValue(ev.target.value)
