@@ -8,22 +8,24 @@ export class Form extends Component {
     name: 'Send',
     value: '',
     messages: [],
-  }
+  };
 
   handleClick = () => {
-    this.setState({ messages: [...this.state.messages, this.state.value] })
-    this.setState({ value: '' })
-  }
+    this.setState({ messages: [...this.state.messages, this.state.value] });
+    this.setState({ value: '' });
+  };
 
   handleChange = (ev) => {
-    this.setState({ value: ev.target.value })
-  }
+    this.setState({ value: ev.target.value });
+  };
 
   render() {
-    return <>
-      <Input change={this.handleChange} value={this.state.value} />
-      <Button name={this.state.name} click={this.handleClick} />
-      <Message send={this.messages} />
-    </>
+    return (
+      <>
+        <Input change={this.handleChange} value={this.state.value} />
+        <Button name={this.state.name} click={this.handleClick} />
+        <Message send={this.messages} />
+      </>
+    );
   }
 }
