@@ -7,10 +7,11 @@ export default {
   component: Button,
   argTypes: {
     onButtonClick: { action: 'click' },
+    name: 'click',
   },
 };
 
-const Template = (args) => <Button {...args} />;
+const Template = (args) => <Button {...args} name="click" />;
 
 export const Primary = Template.bind({});
 Primary.args = {

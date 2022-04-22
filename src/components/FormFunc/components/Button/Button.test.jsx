@@ -15,8 +15,8 @@ describe('Button', () => {
   });
 
   it('render component with text', () => {
-    render(<Button />);
-    expect(screen.getByText(/click/)).toBeInTheDocument();
+    render(<Button name="Send" />);
+    expect(screen.getByText(/Send/)).toBeInTheDocument();
   });
 
   it('render multiply components', () => {
@@ -31,28 +31,29 @@ describe('Button', () => {
   });
 
   it('button is disabled', () => {
-    render(<Button disabled />);
+    render(<Button disabled name="click" />);
 
     expect(screen.getByText('click')).toBeDisabled();
   });
 
-  // it('button have style background red', () => {
-  //   render(<Button />);
+  it('button have style background red', () => {
+    render(<Button name="click" />);
 
-  //   expect(screen.getByText('click')).toHaveStyle({ backgroundColor: 'red' });
-  // });
+    expect(screen.getByText('click')).toHaveStyle({ backgroundColor: 'red' });
+  });
 
   it('button click with userEvent', async () => {
     const mockHandler = jest.fn();
 
-    render(<Button onButtonClick={mockHandler} />);
+    render(<Button click={mockHandler} name="click" />);
     await userEvent.click(screen.getByText(/click/));
     expect(mockHandler).toBeCalledTimes(1);
   });
 
   it('button async click', async () => {
     const mockHandler = jest.fn();
-    render(<Button onButtonClick={() => setTimeout(mockHandler, 1000)} />);
+
+    render(<Button click={() => setTimeout(mockHandler, 1000)} name="click" />);
 
     await userEvent.click(screen.getByText(/click/));
 
@@ -61,12 +62,12 @@ describe('Button', () => {
     });
   });
 
-  it('test exapmle', async () => {
-    const onChange = jest.fn();
-    render(<input type="checkbox" onChange={onChange} />);
-    const checkbox = screen.getByRole('checkbox');
-    await userEvent.dblClick(checkbox);
-    expect(onChange).toHaveBeenCalledTimes(2);
-    expect(checkbox).not.toBeChecked();
-  });
+  // it('test exapmle', async () => {
+  //   const onChange = jest.fn();
+  //   render(<input type="checkbox" onChange={onChange} />);
+  //   const checkbox = screen.getByRole('checkbox');
+  //   await userEvent.dblClick(checkbox);
+  //   expect(onChange).toHaveBeenCalledTimes(2);
+  //   expect(checkbox).not.toBeChecked();
+  // });
 });
