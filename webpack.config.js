@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
   },
   resolve: {
-    extensions: ['.jsx', '.js']
+    extensions: ['.jsx', '.js'],
   },
   devtool: 'eval-source-map',
   module: {
@@ -19,17 +19,14 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css?$/i,
-        use: [
-          'style-loader',
-          'css-loader'
-        ],
-      }
-    ]
+        test: /\.s?css?$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-  ]
-}
+  ],
+};
