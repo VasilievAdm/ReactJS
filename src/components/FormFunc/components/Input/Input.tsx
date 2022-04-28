@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-export const Input = (props) => {
+interface InputProps {
+  change: (e: unknown) => void;
+  value: string;
+}
+
+export const Input: FC<InputProps> = (props) => {
   return (
     <input
       className="input"

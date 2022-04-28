@@ -1,16 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, FC } from 'react';
+import { nanoid } from 'nanoid';
 import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
 import { Author } from './components/Author/Author';
 import { MessageList } from './components/MessageList/MessageList';
 
-export const Form = () => {
+interface Message {
+  idx: string;
+  author: string;
+  value: string;
+}
+
+export const Form: FC = () => {
   const [value, setValue] = useState('');
   const [author, setAuthor] = useState('');
-  const [messageList, setMessageList] = useState([]);
+  const [messageList, setMessageList] = useState<Message[]>([]);
 
   const handleClick = useCallback(() => {
-    setMessageList([...messageList, { value, author }]);
+    setMessageList([...messageList, { idx: nanoid(), value, author }]);
     setValue('');
     setAuthor(author);
   }, [messageList, value, author]);
@@ -31,7 +38,7 @@ export const Form = () => {
       setTimeout(() => {
         setMessageList([
           ...messageList,
-          { author: 'Bot', value: 'Enter your name.' },
+          { idx: nanoid(), author: 'Bot', value: 'Enter your name.' },
         ]);
       }, 1500);
       return () => {
@@ -45,7 +52,7 @@ export const Form = () => {
       setTimeout(() => {
         setMessageList([
           ...messageList,
-          { author: 'Bot', value: 'Your message is empty.' },
+          { idx: nanoid(), author: 'Bot', value: 'Your message is empty.' },
         ]);
       }, 1500);
       return () => {
@@ -58,7 +65,7 @@ export const Form = () => {
       setTimeout(() => {
         setMessageList([
           ...messageList,
-          { author: 'Bot', value: 'Thank you for your appeal.' },
+          { idx: nanoid(), author: 'Bot', value: 'Thank you for your appeal.' },
         ]);
       }, 1500);
       return () => {

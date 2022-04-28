@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-export const Author = (props) => {
+interface AuthorProps {
+  change: (e: unknown) => void;
+  author: string;
+}
+
+export const Author: FC<AuthorProps> = (props) => {
   return (
     <input
       className="author"
