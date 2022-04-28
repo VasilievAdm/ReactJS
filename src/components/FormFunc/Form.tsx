@@ -22,54 +22,60 @@ export const Form: FC = () => {
     setAuthor(author);
   }, [messageList, value, author]);
 
-  const handleChangeM = useCallback((ev) => {
-    setValue(ev.target.value);
-  }, []);
+  const handleChangeM = useCallback(
+    (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setValue(ev.target.value);
+    },
+    []
+  );
 
-  const handleChangeA = useCallback((ev) => {
-    setAuthor(ev.target.value);
-  }, []);
+  const handleChangeA = useCallback(
+    (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setAuthor(ev.target.value);
+    },
+    []
+  );
 
   useEffect(() => {
     if (
       messageList.length > 0 &&
       messageList[messageList.length - 1].author === ''
     ) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setMessageList([
           ...messageList,
           { idx: nanoid(), author: 'Bot', value: 'Enter your name.' },
         ]);
       }, 1500);
       return () => {
-        clearTimeout(setTimeout);
+        clearTimeout(timeout);
       };
     } else if (
       messageList.length > 0 &&
       messageList[messageList.length - 1].value === '' &&
       messageList[messageList.length - 1].author !== ''
     ) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setMessageList([
           ...messageList,
           { idx: nanoid(), author: 'Bot', value: 'Your message is empty.' },
         ]);
       }, 1500);
       return () => {
-        clearTimeout(setTimeout);
+        clearTimeout(timeout);
       };
     } else if (
       messageList.length > 0 &&
       messageList[messageList.length - 1].author !== 'Bot'
     ) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setMessageList([
           ...messageList,
           { idx: nanoid(), author: 'Bot', value: 'Thank you for your appeal.' },
         ]);
       }, 1500);
       return () => {
-        clearTimeout(setTimeout);
+        clearTimeout(timeout);
       };
     }
   }, [messageList]);
@@ -77,7 +83,7 @@ export const Form: FC = () => {
   return (
     <>
       <MessageList messages={messageList} />
-      <Author change={handleChangeA} value={value} />
+      <Author change={handleChangeA} value={author} />
       <Input change={handleChangeM} value={value} />
       <Button name={'Send'} click={handleClick} disabled={!author} />
     </>

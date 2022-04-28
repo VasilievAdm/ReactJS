@@ -10,7 +10,7 @@ const withReport = process.env.npm_config_withReport;
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  entry: path.resolve(__dirname, './src/index.jsx'),
+  entry: path.resolve(__dirname, './src/index.tsx'),
   output: {
     filename: '[name].bundle.[chunkhash].js',
     clean: true,

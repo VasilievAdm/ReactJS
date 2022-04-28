@@ -1,33 +1,33 @@
 import React from 'react';
-import { Input } from './Input';
+import { Author } from './Author';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-describe('Input', () => {
+describe('Author', () => {
   it('render component', () => {
-    render(<Input />);
+    render(<Author value="" change={() => void {}} />);
   });
 
   it('render with snapshot', () => {
-    const { asFragment } = render(<Input />);
+    const { asFragment } = render(<Author value="" change={() => void {}} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render component with placeholder', () => {
-    render(<Input />);
-    expect(screen.getByPlaceholderText(/Enter text/)).toBeInTheDocument();
+    render(<Author value="" change={() => void {}} />);
+    expect(screen.getByPlaceholderText(/Who are you?/)).toBeInTheDocument();
   });
 
   it('render component without error', () => {
-    render(<Input />);
+    render(<Author value="" change={() => void {}} />);
     expect(screen.queryByText('Error')).not.toBeInTheDocument();
   });
 
   it('render multiply components', () => {
     render(
       <>
-        <Input />
-        <Input />
+        <Author value="" change={() => void {}} />
+        <Author value="" change={() => void {}} />
       </>
     );
 
@@ -35,7 +35,7 @@ describe('Input', () => {
   });
 
   it('render component with text', () => {
-    render(<Input value="some text" />);
-    expect(screen.getByRole('textbox')).toHaveValue('some text');
+    render(<Author value="user" change={() => void {}} />);
+    expect(screen.getByRole('textbox')).toHaveValue('user');
   });
 });

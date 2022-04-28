@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
 interface ButtonProps {
-  disabled: boolean;
-  click?: () => void;
+  click: () => void;
   name: string;
 }
 
@@ -11,7 +10,6 @@ export const Button: FC<ButtonProps> = (props) => {
     <button
       className="button"
       onClick={props.click}
-      disabled={props.disabled}
       style={{ backgroundColor: 'red' }}
     >
       {props.name}

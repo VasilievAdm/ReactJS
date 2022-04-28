@@ -8,11 +8,11 @@ interface InputProps {
 export const Input: FC<InputProps> = (props) => {
   return (
     <input
-      className="input"
+      className="chat-list_input"
       type="text"
       value={props.value}
       onChange={props.change}
-      placeholder="Enter text"
+      placeholder="Enter chat name"
     />
   );
 };
