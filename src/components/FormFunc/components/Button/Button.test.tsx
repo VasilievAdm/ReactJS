@@ -46,7 +46,7 @@ describe('Button', () => {
   it('button click with userEvent', async () => {
     const mockHandler = jest.fn();
 
-    render(<Button click={mockHandler} disabled={false} name="Send" />);
+    render(<Button onButtonClick={mockHandler} disabled={false} name="Send" />);
     await userEvent.click(screen.getByText(/Send/));
     expect(mockHandler).toBeCalledTimes(1);
   });
@@ -56,7 +56,7 @@ describe('Button', () => {
 
     render(
       <Button
-        click={() => setTimeout(mockHandler, 1000)}
+        onButtonClick={() => setTimeout(mockHandler, 1000)}
         disabled={false}
         name="Send"
       />

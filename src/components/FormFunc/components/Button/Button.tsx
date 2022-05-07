@@ -6,15 +6,16 @@ interface ButtonProps {
   name: string;
 }
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = ({ name, disabled, onButtonClick }) => {
   return (
     <button
       type="submit"
       className="button"
-      disabled={props.disabled}
+      disabled={disabled}
+      onClick={onButtonClick}
       style={{ backgroundColor: 'red' }}
     >
-      {props.name}
+      {name}
     </button>
   );
 };
