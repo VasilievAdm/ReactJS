@@ -2,6 +2,16 @@
   margin: 10px;
   background-color: aliceblue;
 }
+.content{
+display: flex;
+}
+.chat-list{
+  width: 150px;
+  background-color: aliceblue;
+}
+.chat-list_input{
+  width: 100px;
+}
 .header {
   background-color: #ccc;
   text-align: center;
