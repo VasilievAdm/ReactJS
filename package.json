@@ -18,7 +18,7 @@
     "loki:update": "npm run build-storybook && loki update --requireReference --reactUri file:./storybook-static",
     "loki:approve": "loki approve",
     "loki:test": "npm run build-storybook && loki test --requireReference --reactUri file:./storybook-static",
-    "chromatic": "npx chromatic --project-token=2969e13d7e56"
+    "chromatic": "npx chromatic --project-token=b5d1525cc4cd"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
