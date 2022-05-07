@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface AuthorProps {
-  change: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  change: React.ChangeEventHandler<HTMLInputElement>;
   value: string;
 }
 

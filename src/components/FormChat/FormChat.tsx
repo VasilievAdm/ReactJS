@@ -18,7 +18,7 @@ export const FormChat: FC = () => {
   }, [chatList, name]);
 
   const handleChange = useCallback(
-    (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+    (ev: React.ChangeEvent<HTMLInputElement>) => {
       setName(ev.target.value);
     },
     []

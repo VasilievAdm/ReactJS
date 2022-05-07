@@ -22,19 +22,13 @@ export const Form: FC = () => {
     setAuthor(author);
   }, [messageList, value, author]);
 
-  const handleChangeM = useCallback(
-    (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setValue(ev.target.value);
-    },
-    []
-  );
+  const handleChangeM = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(ev.target.value);
+  };
 
-  const handleChangeA = useCallback(
-    (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setAuthor(ev.target.value);
-    },
-    []
-  );
+  const handleChangeA = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setAuthor(ev.target.value);
+  };
 
   useEffect(() => {
     if (
