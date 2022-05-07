@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface Message {
-  idx: string;
+  id: string;
   author: string;
   value: string;
 }
@@ -14,7 +14,7 @@ export const MessageList: FC<MessageListProps> = (props) => {
   return (
     <div className="message">
       {props.messages.map((message) => (
-        <p key={message.idx}>
+        <p key={message.id}>
           {message.author} : {message.value}
         </p>
       ))}

@@ -2,15 +2,15 @@ import React, { FC } from 'react';
 
 interface ButtonProps {
   disabled: boolean;
-  click?: () => void;
+  onButtonClick?: () => void;
   name: string;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
   return (
     <button
+      type="submit"
       className="button"
-      onClick={props.click}
       disabled={props.disabled}
       style={{ backgroundColor: 'red' }}
     >
