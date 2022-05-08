@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://vasilievadm.github.io/ReactJS/",
   "scripts": {
-    "start": "webpack serve --mode=development",
+    "start": "webpack serve --mode=development --open",
     "build": "webpack --mode=production",
     "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
     "deploy:web": "npm run build && gh-pages -d build",
