@@ -45,10 +45,14 @@ export const App: FC = () => {
   );
 
   const onAddChat = (chat: Chat) => {
-    setMessages({
-      ...messages,
-      [chat.name]: [],
-    });
+    if (!messages[chat.name]) {
+      setMessages({
+        ...messages,
+        [chat.name]: [],
+      });
+    } else {
+      alert('Такой чат уже существует');
+    }
   };
 
   const onDeleteChat = (chatName: string) => {
