@@ -4,7 +4,7 @@ import { Chat, Messages } from '../App';
 import { MessageList } from '../components/MessageList/MessageList';
 import { Form } from './../components/Form/Form';
 import { ChatList } from '../components/ChatList';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 interface ChatsProps {
   messages: Messages;
@@ -116,6 +116,10 @@ export const Chats: FC<ChatsProps> = ({
       };
     }
   }, [chatId, messages, setMessages]);
+
+  if (!chatList.find((chat) => chat.name === chatId)) {
+    return <Navigate replace to="/chats" />;
+  }
 
   return (
     <div className="container">
