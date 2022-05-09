@@ -5,7 +5,7 @@ import { Button } from './components/Button/Button';
 import { Author } from './components/Author/Author';
 
 interface FormProps {
-  addMessage: (a: string, b: string) => void;
+  addMessage: (value: string, author: string) => void;
 }
 
 export const Form: FC<FormProps> = memo(({ addMessage }) => {
