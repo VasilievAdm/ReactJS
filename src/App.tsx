@@ -17,7 +17,7 @@ export interface Chat {
   id: string;
   name: string;
 }
-// test
+
 export interface Message {
   id: string;
   author: string;
