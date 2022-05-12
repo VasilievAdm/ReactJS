@@ -2,19 +2,20 @@ import React, { FC } from 'react';
 
 interface ButtonProps {
   disabled: boolean;
-  click?: () => void;
+  onButtonClick?: () => void;
   name: string;
 }
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = ({ name, disabled, onButtonClick }) => {
   return (
     <button
+      type="submit"
       className="button"
-      onClick={props.click}
-      disabled={props.disabled}
+      disabled={disabled}
+      onClick={onButtonClick}
       style={{ backgroundColor: 'red' }}
     >
-      {props.name}
+      {name}
     </button>
   );
 };

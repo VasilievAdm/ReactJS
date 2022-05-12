@@ -1,6 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container{
-  margin: 10px;
+  padding: 10px;
+  height: 100%;
   background-color: aliceblue;
+  background-size: 100%;
 }
 .content{
 display: flex;
@@ -10,11 +17,12 @@ display: flex;
   background-color: aliceblue;
 }
 .chat-list_input{
-  width: 100px;
+  width: 50px;
 }
 .header {
   background-color: #ccc;
   text-align: center;
+  justify-content: center;
 }
 .input {
   background-color: antiquewhite;

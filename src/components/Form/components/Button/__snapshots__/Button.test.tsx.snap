@@ -5,6 +5,9 @@ exports[`Button render with snapshot 1`] = `
   <button
     class="button"
     style="background-color: red;"
-  />
+    type="submit"
+  >
+    Send
+  </button>
 </DocumentFragment>
 `;
