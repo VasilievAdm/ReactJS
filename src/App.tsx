@@ -1,64 +1,23 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, Suspense, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { nanoid } from 'nanoid';
 
 import { ThemeContext, defaultContext } from './utils/ThemeContext';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
-import { Chats } from './pages/Chats/Chats';
 import { ChatList } from './components/ChatList';
 
+const Chats = React.lazy(() =>
+  import('./pages/Chats/Chats').then((module) => ({
+    default: module.Chats,
+  }))
+);
+
 import './App.scss';
-import { store } from './store';
-import { Provider } from 'react-redux';
-
-export interface Chat {
-  id: string;
-  name: string;
-}
-
-export interface Message {
-  id: string;
-  author: string;
-  value: string;
-}
-export interface Messages {
-  [key: string]: Message[];
-}
+import { AboutWithConnect } from './pages/About';
 
 export const App: FC = () => {
-  const [messages, setMessages] = useState<Messages>({});
   const [theme, setTheme] = useState(defaultContext.theme);
-
-  const chatList = useMemo(
-    () =>
-      Object.entries(messages).map((chat) => ({
-        id: nanoid(),
-        name: chat[0],
-      })),
-    [Object.entries(messages).length]
-  );
-
-  const onAddChat = (chat: Chat) => {
-    if (!messages[chat.name]) {
-      setMessages({
-        ...messages,
-        [chat.name]: [],
-      });
-    } else {
-      alert('Такой чат уже существует');
-    }
-  };
-
-  const onDeleteChat = (chatName: string) => {
-    const newMessages: Messages = { ...messages };
-    delete newMessages[chatName];
-
-    setMessages({
-      ...newMessages,
-    });
-  };
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -66,13 +25,13 @@ export const App: FC = () => {
 
   return (
     <div className="container">
-      <Provider store={store}>
-        <ThemeContext.Provider
-          value={{
-            theme,
-            toggleTheme,
-          }}
-        >
+      <ThemeContext.Provider
+        value={{
+          theme,
+          toggleTheme,
+        }}
+      >
+        <Suspense fallback={<div>Loading...</div>}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Header />}>
@@ -80,36 +39,17 @@ export const App: FC = () => {
                 <Route path="profile" element={<Profile />} />
 
                 <Route path="chats">
-                  <Route
-                    index
-                    element={
-                      <ChatList
-                        chatList={chatList}
-                        onAddChat={onAddChat}
-                        onDeleteChat={onDeleteChat}
-                      />
-                    }
-                  />
-                  <Route
-                    path=":chatId"
-                    element={
-                      <Chats
-                        messages={messages}
-                        setMessages={setMessages}
-                        chatList={chatList}
-                        onAddChat={onAddChat}
-                        onDeleteChat={onDeleteChat}
-                      />
-                    }
-                  />
+                  <Route index element={<ChatList />} />
+                  <Route path=":chatId" element={<Chats />} />
                 </Route>
+                <Route path="about" element={<AboutWithConnect />} />
               </Route>
 
               <Route path="*" element={<h2>404</h2>} />
             </Routes>
           </BrowserRouter>
-        </ThemeContext.Provider>
-      </Provider>
+        </Suspense>
+      </ThemeContext.Provider>
     </div>
   );
 };
