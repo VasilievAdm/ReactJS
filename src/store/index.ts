@@ -1,4 +1,5 @@
-import { createStore, compose, combineReducers } from 'redux';
+import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { profileReducer, ProfileState } from './profile/reducer';
 import { chatReducer, ChatsState } from './chats/reducer';
 
@@ -15,5 +16,5 @@ export const store = createStore(
     profile: profileReducer,
     chats: chatReducer,
   }),
-  composeEnhancers()
+  composeEnhancers(applyMiddleware(thunk))
 );

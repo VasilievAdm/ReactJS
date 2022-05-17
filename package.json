@@ -29,6 +29,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
     "sass": "^1.50.1",
     "sass-loader": "^12.6.0"
   },
