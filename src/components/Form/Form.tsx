@@ -3,18 +3,21 @@ import React, { useState, FC, memo } from 'react';
 import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
 import { Author } from './components/Author/Author';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addMessage } from '../../store/chats/actions';
 
-interface FormProps {
-  addMessage: (value: string, author: string) => void;
-}
-
-export const Form: FC<FormProps> = memo(({ addMessage }) => {
+export const Form: FC = memo(() => {
   const [value, setValue] = useState('');
   const [author, setAuthor] = useState('');
+  const { chatId } = useParams();
+  const dispatch = useDispatch();
 
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addMessage(value, author);
+    if (chatId) {
+      dispatch(addMessage(chatId, author, value));
+    }
     setValue('');
   };
   const handleChangeM = (ev: React.ChangeEvent<HTMLInputElement>) => {
