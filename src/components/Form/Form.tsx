@@ -6,7 +6,7 @@ import { Author } from './components/Author/Author';
 import { useParams } from 'react-router-dom';
 import { ThunkDispatch } from 'redux-thunk';
 import { useDispatch } from 'react-redux';
-import { addMessageWithReply } from '../../store/chats/actions';
+import { addMessageWithReply } from '../../store/chats/slice';
 import { ChatsState } from '../../store/chats/reducer';
 import { AddMessage } from '../../store/chats/types';
 
@@ -20,7 +20,12 @@ export const Form: FC = memo(() => {
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (chatId) {
-      dispatch(addMessageWithReply(chatId, { text: value, author: author }));
+      dispatch(
+        addMessageWithReply({
+          chatId,
+          message: { text: value, author: author },
+        })
+      );
     }
     setValue('');
   };
