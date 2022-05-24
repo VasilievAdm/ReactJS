@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, NavLink, Link } from 'react-router-dom';
-import { selectAuth } from '../store/profile/selectors';
-import { changeAuth } from '../store/profile/slice';
+import { selectAuth } from 'store/profile/selectors';
+import { changeAuth } from 'store/profile/slice';
 
 const navigate = [
   {

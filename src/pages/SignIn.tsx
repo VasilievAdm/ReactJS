@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import React, { FC, useState } from 'react';
 
-import { changeAuth } from '../store/profile/slice';
+import { changeAuth } from 'store/profile/slice';
 
 export const SignIn: FC = () => {
   const [login, setLogin] = useState('');

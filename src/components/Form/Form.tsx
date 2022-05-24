@@ -6,9 +6,9 @@ import { Author } from './components/Author/Author';
 import { useParams } from 'react-router-dom';
 import { ThunkDispatch } from 'redux-thunk';
 import { useDispatch } from 'react-redux';
-import { addMessageWithReply } from '../../store/chats/slice';
-import { ChatsState } from '../../store/chats/reducer';
-import { AddMessage } from '../../store/chats/types';
+import { addMessageWithReply } from 'store/chats/slice';
+import { ChatsState } from 'store/chats/reducer';
+import { AddMessage } from 'store/chats/types';
 
 export const Form: FC = memo(() => {
   const [value, setValue] = useState('');

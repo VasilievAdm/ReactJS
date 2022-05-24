@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { api } from '../constants';
+import { api } from 'src/constants';
 
 export const Articles: FC = () => {
   const [articles, setArticles] = useState<any[]>([]);

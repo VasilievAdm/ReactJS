@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import { MessageList } from '../../components/MessageList/MessageList';
-import { Form } from '../../components/Form/Form';
-import { ChatList } from '../../components/ChatList';
+import { MessageList } from 'src/components/MessageList/MessageList';
+import { Form } from 'src/components/Form/Form';
+import { ChatList } from 'src/components/ChatList';
 import { Navigate, useParams } from 'react-router-dom';
-import { WithClasses } from '../../HOC/WithClasses';
+import { WithClasses } from 'src/HOC/WithClasses';
 
 import style from './Chats.module.css';
 import { shallowEqual, useSelector } from 'react-redux';
-import { selectChatList, selectChats } from '../../store/chats/selector';
+import { selectChatList, selectChats } from 'store/chats/selector';
 
 export const Chats: FC = () => {
   const { chatId } = useParams();

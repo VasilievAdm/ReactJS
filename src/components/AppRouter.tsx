@@ -1,21 +1,20 @@
 import React, { FC, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AboutWithConnect } from '../pages/About';
-import { Chats } from '../pages/Chats/Chats';
+import { AboutWithConnect } from 'src/pages/About';
+import { Chats } from 'src/pages/Chats/Chats';
 import { Header } from './Header';
-import { Home } from '../pages/Home';
-// import { Profile } from '../pages/Profile';
+import { Home } from 'src/pages/Home';
 import { ChatList } from './ChatList';
-import { Articles } from '../pages/Articles';
-import { SignIn } from '../pages/SignIn';
-import { SignUp } from '../pages/SignUp';
+import { Articles } from 'src/pages/Articles';
+import { SignIn } from 'src/pages/SignIn';
+import { SignUp } from 'src/pages/SignUp';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
 const Profile = React.lazy(() =>
   Promise.all([
-    import('../pages/Profile').then(({ Profile }) => ({
+    import('src/pages/Profile').then(({ Profile }) => ({
       default: Profile,
     })),
     new Promise((resolve) => setTimeout(resolve, 1000)),

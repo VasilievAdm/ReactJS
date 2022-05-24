@@ -1,14 +1,8 @@
 import { useSelector } from 'react-redux';
-import {
-  Navigate,
-  Outlet,
-  Route,
-  RouteProps,
-  useOutlet,
-} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import React, { FC } from 'react';
 
-import { selectAuth } from '../store/profile/selectors';
+import { selectAuth } from 'store/profile/selectors';
 
 interface PrivateRouteProps {
   component?: JSX.Element;
