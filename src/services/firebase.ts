@@ -6,6 +6,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
+
+import { getDatabase, ref } from 'firebase/database';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,3 +34,13 @@ export const logIn = async (email: string, password: string) =>
   await signInWithEmailAndPassword(auth, email, password);
 
 export const logOut = async () => await signOut(auth);
+
+const db = getDatabase(firebase);
+
+export const userRef = ref(db, 'user');
+export const chatsRef = ref(db, 'chats');
+
+export const getChatsById = (chatId: string) => ref(db, `chats/${chatId}`);
+
+export const getMessageListById = (chatId: string) =>
+  ref(db, `chats/${chatId}/messageList/`);

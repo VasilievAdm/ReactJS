@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { MessageList } from 'src/components/MessageList/MessageList';
 import { Form } from 'src/components/Form/Form';
 import { ChatList } from 'src/components/ChatList';
@@ -7,16 +7,42 @@ import { WithClasses } from 'src/HOC/WithClasses';
 
 import style from './Chats.module.css';
 import { shallowEqual, useSelector } from 'react-redux';
-import { selectChatList, selectChats } from 'store/chats/selector';
+import { selectChat, selectChatList, selectChats } from 'store/chats/selector';
+import { StoreState } from 'src/store';
+import { onValue, push } from 'firebase/database';
+import { getChatsById, getMessageListById } from 'src/services/firebase';
+import { nanoid } from 'nanoid';
 
 export const Chats: FC = () => {
   const { chatId } = useParams();
   const MessageListWithClass = WithClasses(MessageList);
 
+  const messages = useSelector((state: StoreState) =>
+    selectChat(state, chatId || '')
+  );
   const chats = useSelector(selectChats, shallowEqual);
-  const chatList = useSelector(selectChatList, shallowEqual);
+  // const chatList = useSelector(selectChatList, shallowEqual);
 
-  if (!chatList.find((chat) => chat.name === chatId)) {
+  useEffect(() => {
+    if (chatId) {
+      onValue(getChatsById(chatId), (snapshot) => {
+        const chat = snapshot.val();
+        const lastMessage: any = Object.entries(chat.messageList)[
+          Object.entries(chat.messageList).length - 2
+        ][1];
+
+        if (lastMessage.author !== 'Bot') {
+          push(getMessageListById(chatId), {
+            author: 'Bot',
+            id: nanoid(),
+            text: 'Im BOT',
+          });
+        }
+      });
+    }
+  }, []);
+
+  if (chatId && !chats[chatId]) {
     return <Navigate replace to="/chats" />;
   }
 
@@ -29,7 +55,7 @@ export const Chats: FC = () => {
         <div className="form">
           <div className="header"> Chat {chatId}</div>
           <MessageListWithClass
-            messages={chatId ? chats[chatId] : []}
+            messages={chatId ? messages : []}
             classes={style.color}
           />
           <Form />
