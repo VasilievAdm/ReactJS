@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { logIn } from 'src/services/firebase';
 import { changeAuth } from 'store/profile/slice';

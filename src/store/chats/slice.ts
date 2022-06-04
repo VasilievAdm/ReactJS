@@ -1,8 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { Message, MessageState } from './types';
+import { MessageState } from './types';
 
-import { nanoid } from 'nanoid';
 import { onValue } from 'firebase/database';
 import { chatsRef } from 'src/services/firebase';
 

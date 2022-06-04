@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '@mui/material';
-// import { addChat, deleteChat } from 'store/chats/slice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectChatList } from 'store/chats/selector';
 import { nanoid } from 'nanoid';
 import { push, remove } from 'firebase/database';
@@ -10,8 +9,6 @@ import { chatsRef, getChatsById } from 'src/services/firebase';
 
 export const ChatList: FC = () => {
   const [name, setName] = useState('');
-
-  const dispatch = useDispatch();
 
   const chatList = useSelector(
     selectChatList,
@@ -22,7 +19,6 @@ export const ChatList: FC = () => {
     e.preventDefault();
 
     if (name) {
-      // dispatch(addChat({ name }));
       const id = nanoid();
 
       push(chatsRef, {
@@ -37,7 +33,6 @@ export const ChatList: FC = () => {
   };
 
   const handleDeleteChat = (id: string) => {
-    // () => dispatch(deleteChat({ chatId: chat.name }))
     remove(getChatsById(id));
   };
 

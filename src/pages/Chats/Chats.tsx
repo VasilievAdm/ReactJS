@@ -4,10 +4,9 @@ import { Form } from 'src/components/Form/Form';
 import { ChatList } from 'src/components/ChatList';
 import { Navigate, useParams } from 'react-router-dom';
 import { WithClasses } from 'src/HOC/WithClasses';
-
 import style from './Chats.module.css';
 import { shallowEqual, useSelector } from 'react-redux';
-import { selectChat, selectChatList, selectChats } from 'store/chats/selector';
+import { selectChat, selectChats } from 'store/chats/selector';
 import { StoreState } from 'src/store';
 import { onValue, push } from 'firebase/database';
 import { getChatsById, getMessageListById } from 'src/services/firebase';
@@ -21,7 +20,6 @@ export const Chats: FC = () => {
     selectChat(state, chatId || '')
   );
   const chats = useSelector(selectChats, shallowEqual);
-  // const chatList = useSelector(selectChatList, shallowEqual);
 
   useEffect(() => {
     if (chatId) {

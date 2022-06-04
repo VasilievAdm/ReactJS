@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet, NavLink, Link } from 'react-router-dom';
 import { logOut } from 'src/services/firebase';
 import { selectAuth } from 'store/profile/selectors';
-import { changeAuth } from 'store/profile/slice';
 
 const navigate = [
   {
