@@ -1,10 +1,16 @@
-import { nanoid } from 'nanoid';
 import { StoreState } from '..';
 
 export const selectChats = (state: StoreState) => state.chats;
 
+export const selectChat = (state: StoreState, chatId: string) =>
+  Object.entries(state.chats[chatId].messageList)
+    .filter((item) => item[0] !== 'empty')
+    .map((messages) => ({
+      ...messages[1],
+    }));
+
 export const selectChatList = (state: StoreState) =>
-  Object.keys(state.chats).map((chat) => ({
-    id: nanoid(),
-    name: chat,
+  Object.entries(state.chats).map((chat) => ({
+    id: chat[0],
+    name: chat[1].name,
   }));

@@ -22,7 +22,7 @@ export type StoreState = ReturnType<typeof rootReducer>;
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: [],
+  blacklist: ['profile'],
 };
 
 const rootReducer = combineReducers({
